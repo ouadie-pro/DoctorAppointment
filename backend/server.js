@@ -8,7 +8,9 @@ const connectDb = require('./Config/ConnectionDb')
 app.use(express.json());
 app.use(cors());
 
-
+app.get('/',(req,res)=>{
+    res.send('iiiiiiiiiii');
+})
 
 
 
