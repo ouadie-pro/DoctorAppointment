@@ -3,7 +3,8 @@ const Doctor = require('../Models/DoctorSchema')
 const addDoctor = async(req,res)=>{
     try{
         const {name,specialty,description,experienceYears} = req.body;
-        if(!name || !specialty || !description || !experienceYears || image)
+        const image = req.file ? req.file.filename : null;
+        if(!name || !specialty || !description || !experienceYears || !image)
             return res.status(400).json({massage:"All fields are required"})
 
         const newDoctor = new Doctor({
@@ -11,7 +12,7 @@ const addDoctor = async(req,res)=>{
             specialty,
             description,
             experienceYears,
-            image
+            image:req.file?.filename
         })
         const savedDoctor = await newDoctor.save();
         return res.status(200).json(savedDoctor)
@@ -21,4 +22,8 @@ const addDoctor = async(req,res)=>{
     }
 }
 
-module.exports = {addDoctor}
+const getDoctor = async (req,res)=>{
+    const Doctors = await Doctor.find();
+    res.json(Doctors)
+}
+module.exports = {addDoctor , getDoctor}

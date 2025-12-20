@@ -8,8 +8,9 @@ const connectDb = require('./Config/ConnectionDb')
 app.use(express.json());
 app.use(cors());
 
-app.use('/user',require('./Router/User'))
 app.use('/doctors',require('./Router/Doctor'))
+app.use('/Public/images', express.static('Public/images'));
+app.use('/user',require('./Router/User'))
 
 
 
