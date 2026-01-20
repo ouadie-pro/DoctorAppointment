@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const multer = require('multer')
-const {addDoctor , getDoctor} = require('../Controller/Doctor')
+const {addDoctor , getDoctor , getIdDoctor} = require('../Controller/Doctor')
 
 //multer
 const storage = multer.diskStorage({
@@ -18,6 +18,7 @@ const upload = multer({ storage: storage })
 //Router
 Router.post('/addDoctors',upload.single('image'),addDoctor);
 Router.get('/allDoctors',getDoctor);
+Router.get('/DoctorId/:id',getIdDoctor);
 
 
 

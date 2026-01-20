@@ -26,4 +26,11 @@ const getDoctor = async (req,res)=>{
     const Doctors = await Doctor.find();
     res.json(Doctors)
 }
-module.exports = {addDoctor , getDoctor}
+ 
+const getIdDoctor = async (req,res)=>{
+    const Doctors = await Doctor.findById(req.params.id);
+    if(!Doctors)
+        return res.status(404).json({massage:"Doctor not found"})
+    res.json(Doctors)
+}
+module.exports = {addDoctor , getDoctor , getIdDoctor}
